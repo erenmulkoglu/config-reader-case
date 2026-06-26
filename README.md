@@ -113,7 +113,7 @@ Her servis yalnızca kendi konfigürasyon kayıtlarına erişebilir
 
 ```text
 SERVICE-A
-↓
+->
 
 ApplicationName = SERVICE-A
 ```
@@ -160,11 +160,11 @@ Uygulama çalışırken MongoDB erişilemez hale gelirse RAM üzerinde bulunan s
 ```text
 MongoDB
 
-↓
+->
 
 Memory Cache
 
-↓
+->
 
 GetValue<T>()
 ```
@@ -184,15 +184,15 @@ dosyasından okunur
 ```text
 MongoDB
 
-↓
+->
 
 cache.json
 
-↓
+->
 
 Memory Cache
 
-↓
+->
 
 GetValue<T>()
 ```
@@ -282,6 +282,9 @@ Servisler
 | React | http://localhost:5173 |
 | RabbitMQ | http://localhost:15672/ |
 | MongoDB | localhost:27017 |
+
+
+Not: Lütfen http yazalım. 
 
 
 ---
