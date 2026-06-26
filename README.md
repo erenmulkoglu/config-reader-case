@@ -6,6 +6,14 @@ Bu proje, .NET uygulamalarında kullanılan statik konfigürasyon dosyaları (we
 
 Konfigürasyon kayıtları MongoDB üzerinde tutulur ve uygulama çalışırken değiştirilebilir. Böylece deployment, restart veya recycle işlemi gerekmeksizin uygulamalar güncel konfigürasyon değerlerini kullanabilir.
 
+
+Tüm ekosistemin docker-compose ile çalıştırıldı.
+
+<img width="1917" height="967" alt="image" src="https://github.com/user-attachments/assets/f1899bc5-6fbc-49e1-bc18-6d6152534480" />
+<img width="1917" height="971" alt="image" src="https://github.com/user-attachments/assets/92ce3bf9-ed86-43eb-993c-96aab59299b9" />
+<img width="1912" height="967" alt="image" src="https://github.com/user-attachments/assets/02983bda-a4bc-4c1b-983c-0b6ff8c0b80f" />
+
+
 # Kullanılan Teknolojiler
 
 - .NET 8
