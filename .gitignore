@@ -20,9 +20,8 @@ obj/
 # Logs
 *.log
 
-# Cache
-cache/
-*.cache.json
+# Runtime cache files
+**/*.cache.json
 
 # OS
 .DS_Store
