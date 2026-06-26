@@ -52,6 +52,9 @@ namespace ConfigReader
             _refreshTask = Task.Run(() => RefreshPeriodicallyAsync(_cancellationTokenSource.Token));
         }
 
+
+        /// Verilen konfigürasyon anahtarını cache üzerinden okuyarak istenen tipe dönüştürür
+        /// Değer bulunamazsa ConfigurationNotFoundException fırlatır
         public T GetValue<T>(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
@@ -63,6 +66,8 @@ namespace ConfigReader
             return ConfigurationValueConverter.Convert<T>(key, item.Value);
         }
 
+        /// Parametrik olarak verilen süre aralığında storage'ı kontrol eder
+        /// Yeni eklenen veya değişen konfigürasyonları memory cache'e taşır
         private async Task RefreshPeriodicallyAsync(CancellationToken cancellationToken)
         {
             try
@@ -77,6 +82,9 @@ namespace ConfigReader
             }
         }
 
+        /// Storage üzerinden aktif konfigürasyonları okur
+        /// Başarılı okuma sonrası memory cache ve file cache güncellenir
+        /// Storage erişilemezse önce mevcut memory cache, memory cache boşsa file cache kullanılır
         private async Task RefreshAsync(CancellationToken cancellationToken)
         {
             try
@@ -104,6 +112,9 @@ namespace ConfigReader
             }
         }
 
+
+        /// Gelen konfigürasyon listesini thread-safe ConcurrentDictionary yapısına dönüştürür
+        /// Cache değişimi atomik olarak yapıldığı için okuma yapan thread'ler tutarlı snapshot görür
         private void SetCache(IReadOnlyCollection<ConfigurationItem> configurations)
         {
             _cache = new ConcurrentDictionary<string, ConfigurationItem>(configurations.ToDictionary(
@@ -113,6 +124,7 @@ namespace ConfigReader
                 StringComparer.OrdinalIgnoreCase);
         }
 
+        /// Arka plan refresh işlemini durdurur ve kullanılan kaynakları temizler
         public void Dispose()
         {
             _cancellationTokenSource.Cancel();
