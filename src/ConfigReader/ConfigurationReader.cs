@@ -28,6 +28,9 @@ namespace ConfigReader
 
         private readonly Task _refreshTask;
 
+
+    /// ConfigurationReader örneğini verilen uygulama adı, storage bağlantısı ve refresh süresi ile başlatır
+    /// İlk başarılı okumayı senkron olarak yapar ve arka planda periyodik refresh sürecini başlatır
         public ConfigurationReader(string applicationName, string connectionString, int refreshTimerIntervalInMs)
         {
             if (string.IsNullOrWhiteSpace(applicationName))
