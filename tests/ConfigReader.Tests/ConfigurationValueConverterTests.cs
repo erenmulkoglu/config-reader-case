@@ -3,8 +3,13 @@ using FluentAssertions;
 
 namespace ConfigReader.Tests;
 
+
+/// ConfigurationValueConverter sınıfının veri tipi dönüşümlerini doğrulayan unit testlerini içeriyor
 public class ConfigurationValueConverterTests
 {
+
+    /// String tipindeki değerin doğru dönüştürüldüğünü doğrular
+
     [Fact]
     public void Convert_Should_Return_String_Value()
     {
@@ -12,6 +17,8 @@ public class ConfigurationValueConverterTests
 
         result.Should().Be("soty.io");
     }
+
+    /// Integer tipindeki değerin doğru dönüştürüldüğünü doğrular
 
     [Fact]
     public void Convert_Should_Return_Int_Value()
@@ -21,6 +28,8 @@ public class ConfigurationValueConverterTests
         result.Should().Be(50);
     }
 
+    /// Double tipindeki değerin doğru dönüştürüldüğünü doğrular
+
     [Fact]
     public void Convert_Should_Return_Double_Value()
     {
@@ -28,6 +37,8 @@ public class ConfigurationValueConverterTests
 
         result.Should().Be(12.5);
     }
+
+    /// Boolean tipindeki değerlerin (1/0 ve true/false) doğru dönüştürüldüğünü doğrular
 
     [Theory]
     [InlineData("1", true)]

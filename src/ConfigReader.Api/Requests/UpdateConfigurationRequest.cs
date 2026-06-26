@@ -1,5 +1,8 @@
 ﻿namespace ConfigReader.Api.Requests
 {
+
+
+    /// Mevcut bir konfigürasyon kaydını güncellemek için kullanılan istek modelidir
     public sealed class UpdateConfigurationRequest
     {
         public string Name { get; set; } = default!;

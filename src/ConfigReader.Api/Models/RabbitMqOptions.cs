@@ -1,5 +1,8 @@
 ﻿namespace ConfigReader.Api.Models
 {
+
+    /// RabbitMQ bağlantı ayarlarını temsil ediyor
+
     public sealed class RabbitMqOptions
     {
         public string HostName { get; set; } = default!;

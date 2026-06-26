@@ -1,5 +1,9 @@
 ﻿namespace ConfigReader.Api.Events
 {
+
+
+    /// Konfigürasyon üzerinde gerçekleşen değişikliği temsil eden event modelidir
+    /// RabbitMQ üzerinden publish edilir
     public sealed class ConfigurationChangedEvent
     {
         public string Id { get; set; } = default!;

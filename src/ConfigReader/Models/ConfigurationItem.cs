@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ConfigReader.Models
 {
+
+    /// ConfigurationReader tarafından kullanılan konfigürasyon kaydını temsil ediyor
+    /// Storage üzerinden okunan veriler bu model ile bellekte tutar
     public sealed class ConfigurationItem
     {
         public string Id { get; set; } = default!;

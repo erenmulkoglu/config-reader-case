@@ -9,8 +9,13 @@ using FluentAssertions;
 
 namespace ConfigReader.Tests;
 
+
+/// FileConfigurationCache sınıfının dosyaya yazma ve dosyadan okuma işlemlerini doğrulayan unit testlerini içeriyor
 public class FileConfigurationCacheTests
 {
+
+    /// Kaydedilen konfigürasyonların dosyaya başarılı şekilde yazıldığını doğrular
+
     [Fact]
     public async Task SaveAsync_And_LoadAsync_Should_Return_Same_Configurations()
     {
@@ -42,6 +47,8 @@ public class FileConfigurationCacheTests
         result.First().Value.Should().Be("soty.io");
         result.First().ApplicationName.Should().Be(applicationName);
     }
+
+    /// Daha önce kaydedilen konfigürasyonların dosyadan başarılı şekilde okunabildiğini doğrular
 
     [Fact]
     public async Task LoadAsync_Should_Return_Empty_List_When_Cache_File_Does_Not_Exist()

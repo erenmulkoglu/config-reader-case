@@ -3,6 +3,9 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace ConfigReader.Api.Documents;
 
+
+
+/// MongoDB üzerinde saklanan konfigürasyon dokümanını temsil ediyor
 public sealed class ConfigurationDocument
 {
     [BsonId]

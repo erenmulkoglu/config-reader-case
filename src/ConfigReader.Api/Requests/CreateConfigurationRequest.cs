@@ -1,5 +1,7 @@
 ﻿namespace ConfigReader.Api.Requests
 {
+
+    /// Yeni bir konfigürasyon kaydı oluşturmak için kullanılan istek modelidir
     public sealed class CreateConfigurationRequest
     {
         public string Name { get; set; } = default!;

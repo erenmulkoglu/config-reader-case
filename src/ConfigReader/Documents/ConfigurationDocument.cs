@@ -8,6 +8,9 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace ConfigReader.Documents
 {
+
+    /// ConfigurationReader kütüphanesi tarafından kullanılan konfigürasyon dokümanını temsil ediyor
+    /// Storage katmanından okunan kayıtlar bu model ile taşınıyor
     internal sealed class ConfigurationDocument
     {
         [BsonId]

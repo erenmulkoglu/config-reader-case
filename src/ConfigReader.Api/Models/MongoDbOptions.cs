@@ -1,5 +1,9 @@
 ﻿namespace ConfigReader.Api.Models
 {
+
+
+    /// MongoDB bağlantı ayarlarını temsil ediyor
+
     public sealed class MongoDbOptions
     {
         public string ConnectionString { get; set; } = default!;

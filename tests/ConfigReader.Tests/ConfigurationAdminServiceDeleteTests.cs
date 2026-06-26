@@ -13,8 +13,14 @@ using Moq;
 
 namespace ConfigReader.Tests;
 
+
+/// ConfigurationAdminService sınıfının silme (Delete) işlemini doğrulayan unit testlerini içeriyor
 public class ConfigurationAdminServiceDeleteTests
 {
+
+
+    /// Kayıt bulunduğunda DeleteAsync metodunun başarılı şekilde çalıştığını doğrular
+
     [Fact]
     public async Task DeleteAsync_Should_Return_True_When_Document_Exists()
     {
@@ -64,6 +70,9 @@ public class ConfigurationAdminServiceDeleteTests
                 It.IsAny<CancellationToken>()),
             Times.Once);
     }
+
+
+    /// Silinmek istenen kayıt bulunamadığında DeleteAsync metodunun false döndürdüğünü doğrular
 
     [Fact]
     public async Task DeleteAsync_Should_Return_False_When_Document_Does_Not_Exist()
