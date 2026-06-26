@@ -280,7 +280,7 @@ Servisler
 |---------|-------|
 | API | http://localhost:7193 |
 | React | http://localhost:5173 |
-| RabbitMQ | http://localhost:15672/ |
+| RabbitMQ | http://localhost:15672 | guest & guest |
 | MongoDB | localhost:27017 |
 
 
