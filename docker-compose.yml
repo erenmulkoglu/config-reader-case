@@ -1,0 +1,47 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: configreader-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  mongo:
+    image: mongo:7
+    container_name: configreader-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  api:
+    build:
+      context: .
+      dockerfile: src/ConfigReader.Api/Dockerfile
+    container_name: configreader-api
+    ports:
+      - "7193:8080"
+    environment:
+      - RabbitMq__HostName=rabbitmq
+      - RabbitMq__UserName=guest
+      - RabbitMq__Password=guest
+      - RabbitMq__ExchangeName=configuration.exchange
+      - ASPNETCORE_URLS=http://+:8080
+      - MongoDb__ConnectionString=mongodb://mongo:27017/ConfigReaderDb
+      - MongoDb__DatabaseName=ConfigReaderDb
+      - MongoDb__CollectionName=Configurations
+    depends_on:
+      - mongo
+      - rabbitmq
+
+  web:
+    build:
+      context: ./src/ConfigReader.Web
+      dockerfile: Dockerfile
+    container_name: configreader-web
+    ports:
+      - "5173:80"
+    depends_on:
+      - api
+
+volumes:
+  mongo-data:

@@ -1,0 +1,29 @@
+# Build
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# React / Vite
+**/node_modules/
+**/dist/
+
+# Logs
+*.log
+
+# Cache
+cache/
+*.cache.json
+
+# OS
+.DS_Store
+Thumbs.db

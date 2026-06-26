@@ -1,0 +1,12 @@
+﻿namespace ConfigReader.Api.Requests
+{
+    public sealed class UpdateConfigurationRequest
+    {
+        public string Name { get; set; } = default!;
+        public string Type { get; set; } = default!;
+        public string Value { get; set; } = default!;
+        public bool IsActive { get; set; }
+        public string ApplicationName { get; set; } = default!;
+        public long Version { get; set; }
+    }
+}
