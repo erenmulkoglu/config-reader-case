@@ -278,7 +278,7 @@ docker compose up --build
 Servisler
 
 | Servis | Adres |
-|---------|-------|
+|---------|-------|-------|
 | API | http://localhost:7193 |
 | React | http://localhost:5173 |
 | RabbitMQ | http://localhost:15672 | guest & guest |
