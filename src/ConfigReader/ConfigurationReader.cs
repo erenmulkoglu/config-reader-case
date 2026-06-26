@@ -13,6 +13,9 @@ using ConfigReader.Cache;
 
 namespace ConfigReader
 {
+
+    /// Merkezi storage üzerinden konfigürasyon değerlerini okuyan ana kütüphanemiz
+    /// Uygulama bazlı izolasyon, periyodik refresh, memory cache ve file cache fallback mekanizmalarını yönetiyor
     public sealed class ConfigurationReader : IDisposable
     {
         private readonly string _applicationName;
