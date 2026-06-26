@@ -289,6 +289,37 @@ Not: Lütfen http yazalım.
 
 ---
 
+
+## Örnek Veriler / POST
+
+{
+  "name": "SiteName",
+  "type": "string",
+  "value": "soty.io",
+  "isActive": true,
+  "applicationName": "SERVICE-A"
+}
+
+{
+  "name": "IsBasketEnabled",
+  "type": "bool",
+  "value": "1",
+  "isActive": true,
+  "applicationName": "SERVICE-B"
+}
+
+{
+  "name": "MaxItemCount",
+  "type": "int",
+  "value": "50",
+  "isActive": false,
+  "applicationName": "SERVICE-A"
+}
+
+
+---
+
+
 # Unit Test
 
 Unit testleri çalıştırmak için
