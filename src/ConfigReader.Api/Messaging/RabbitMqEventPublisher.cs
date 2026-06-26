@@ -7,6 +7,8 @@ using System.Text.Json;
 
 namespace ConfigReader.Api.Messaging;
 
+
+/// Configuration değişikliklerini RabbitMQ üzerine event olarak yayınlayan publisher implementasyonudur
 public sealed class RabbitMqEventPublisher : IEventPublisher
 {
     private readonly RabbitMqOptions _options;
@@ -16,6 +18,9 @@ public sealed class RabbitMqEventPublisher : IEventPublisher
         _options = options.Value;
     }
 
+
+    /// ConfigurationChangedEvent mesajını Rabbitmq exchange üzerine publish eder
+    /// Routing key formatı: configuration.changed.{ApplicationName}
     public Task PublishConfigurationChangedAsync(ConfigurationChangedEvent @event, CancellationToken cancellationToken = default)
     {
         Console.WriteLine($"RabbitMQ Publish: {@event.Operation} - {@event.Name} - {@event.ApplicationName}");

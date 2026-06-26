@@ -4,6 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ConfigReader.Api.Controllers;
 
+
+
+/// Konfigürasyon kayıtlarını yönetmek için kullanılan REST API controller'ıdır
+
 [ApiController]
 [Route("api/configurations")]
 public sealed class ConfigurationsController : ControllerBase
@@ -15,12 +19,18 @@ public sealed class ConfigurationsController : ControllerBase
         _service = service;
     }
 
+
+    /// Tüm konfigürasyon kayıtlarını listeler
+    
     [HttpGet]
     public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
     {
         var items = await _service.GetAllAsync(cancellationToken);
         return Ok(items);
     }
+
+
+    /// Yeni konfigürasyon kaydı oluşturur
 
     [HttpPost]
     public async Task<IActionResult> Create(CreateConfigurationRequest request, CancellationToken cancellationToken)
@@ -29,6 +39,8 @@ public sealed class ConfigurationsController : ControllerBase
         return CreatedAtAction(nameof(GetAll), new { id = created.Id }, created);
     }
 
+    /// Mevcut konfigürasyon kaydını günceller
+    
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(string id, UpdateConfigurationRequest request, CancellationToken cancellationToken)
     {
@@ -39,6 +51,9 @@ public sealed class ConfigurationsController : ControllerBase
 
         return NoContent();
     }
+
+    /// Mevcut konfigürasyon kaydını siler
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(string id, CancellationToken cancellationToken)
     {

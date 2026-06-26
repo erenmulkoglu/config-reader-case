@@ -8,8 +8,16 @@ using ConfigReader.Exceptions;
 
 namespace ConfigReader.Converters
 {
+
+
+    /// Storage üzerinde string olarak tutulan konfigürasyon değerlerini istenen tipe dönüştürür
+    /// Desteklenen tipler: string, int, double ve bool
     public static class ConfigurationValueConverter
     {
+
+
+        /// Verilen string değeri generic tip parametresine göre dönüştürür
+        /// Bool için "1/0" ve "true/false" değerlerini destekler
         public static T Convert<T>(string key, string value)
         {
             try

@@ -10,6 +10,10 @@ using MongoDB.Driver;
 
 namespace ConfigReader.Storage
 {
+
+
+    /// ConfigurationReader kütüphanesinin MongoDB storage adaptörüdür
+    /// Sadece ilgili ApplicationName'e ait ve aktif olan kayıtları okur
     internal sealed class MongoConfigurationStorage : IConfigurationStorage
     {
         private readonly IMongoCollection<ConfigurationDocument> _collection;
@@ -26,6 +30,8 @@ namespace ConfigReader.Storage
             _collection = database.GetCollection<ConfigurationDocument>("Configurations");
         }
 
+
+        /// MongoDB üzerinden yalnızca verilen applicationName'e ait ve IsActive=true olan konfigürasyon kayıtlarını getirir
         public async Task<IReadOnlyCollection<ConfigurationItem>> GetActiveConfigurationsAsync(string applicationName, CancellationToken cancellationToken = default)
         {
             var documents = await _collection

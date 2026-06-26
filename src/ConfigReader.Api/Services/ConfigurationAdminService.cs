@@ -6,6 +6,10 @@ using ConfigReader.Api.Requests;
 
 namespace ConfigReader.Api.Services;
 
+
+
+/// Yönetim paneli ve API için configuration CRUD operasyonlarını koordine eder
+/// Repository işlemlerinden sonra RabbitMQ üzerinden configuration changed event yayınlar
 public sealed class ConfigurationAdminService
 {
     private const string CreatedOperation = "Created";
@@ -21,11 +25,15 @@ public sealed class ConfigurationAdminService
         _eventPublisher = eventPublisher;
     }
 
+
+    /// Yönetim ekranında listelenmek üzere tüm konfigürasyon kayıtlarını getirir
     public Task<List<ConfigurationDocument>> GetAllAsync(CancellationToken cancellationToken = default)
     {
         return _repository.GetAllAsync(cancellationToken);
     }
 
+
+    /// Yeni bir konfigürasyon kaydı oluşturur ve Created event'ini RabbitMQ'ya publish eder
     public async Task<ConfigurationDocument> CreateAsync(CreateConfigurationRequest request, CancellationToken cancellationToken = default)
     {
         var now = DateTime.UtcNow;
@@ -49,6 +57,9 @@ public sealed class ConfigurationAdminService
         return created;
     }
 
+
+    /// Var olan konfigürasyon kaydını siler
+    /// Başarılı silme sonrası Deleted event'ini RabbitMQ'ya publish eder
     public async Task<bool> DeleteAsync(string id, CancellationToken cancellationToken = default)
     {
         var document = await _repository.GetByIdAsync(id, cancellationToken);
@@ -66,6 +77,9 @@ public sealed class ConfigurationAdminService
         return true;
     }
 
+
+    /// Version kontrolü ile mevcut konfigürasyon kaydını günceller
+    /// Başarılı güncelleme sonrası Updated event'ini RabbitMQ'ya publish eder
     public async Task<bool> UpdateAsync(string id, UpdateConfigurationRequest request, CancellationToken cancellationToken = default)
     {
         var document = new ConfigurationDocument
@@ -89,6 +103,8 @@ public sealed class ConfigurationAdminService
         return true;
     }
 
+
+    /// ConfigurationDocument bilgisinden event oluşturur ve event publisher üzerinden yayınlar
     private Task PublishConfigurationChangedAsync(ConfigurationDocument document, string operation, CancellationToken cancellationToken)
     {
         var @event = CreateConfigurationChangedEvent(document, operation);
@@ -96,6 +112,8 @@ public sealed class ConfigurationAdminService
         return _eventPublisher.PublishConfigurationChangedAsync(@event, cancellationToken);
     }
 
+
+    /// ConfigurationDocument nesnesini RabbitMQ'ya gönderilecek ConfigurationChangedEvent modeline dönüştürür
     private static ConfigurationChangedEvent CreateConfigurationChangedEvent(ConfigurationDocument document, string operation)
     {
         return new ConfigurationChangedEvent

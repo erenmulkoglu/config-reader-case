@@ -6,6 +6,9 @@ using MongoDB.Driver;
 
 namespace ConfigReader.Api.Repositories
 {
+
+
+    /// Yönetim API'si için MongoDB üzerinde configuration CRUD işlemlerini gerçekleştiren repository katmanıdır
     public sealed class MongoConfigurationRepository : IConfigurationRepository
     {
         private readonly IMongoCollection<ConfigurationDocument> _collection;
@@ -21,6 +24,8 @@ namespace ConfigReader.Api.Repositories
                 mongoOptions.CollectionName);
         }
 
+
+        /// Tüm konfigürasyon kayıtlarını MongoDB üzerinden getirir
         public async Task<List<ConfigurationDocument>> GetAllAsync(CancellationToken cancellationToken = default)
         {
             return await _collection
@@ -30,12 +35,16 @@ namespace ConfigReader.Api.Repositories
                 .ToListAsync(cancellationToken);
         }
 
+
+        /// Id bilgisine göre tek bir konfigürasyon kaydını getirir
         public async Task<ConfigurationDocument?> GetByIdAsync(string id, CancellationToken cancellationToken = default)
         {
             return await _collection.Find(x => x.Id == id)
                 .FirstOrDefaultAsync(cancellationToken);
         }
 
+
+        /// Id bilgisine göre konfigürasyon kaydını siler
         public async Task<bool> DeleteAsync(string id, CancellationToken cancellationToken = default)
         {
             var result = await _collection.DeleteOneAsync(
@@ -45,12 +54,16 @@ namespace ConfigReader.Api.Repositories
             return result.DeletedCount > 0;
         }
 
+        /// Yeni bir konfigürasyon kaydı oluşturur.
         public async Task<ConfigurationDocument> CreateAsync(ConfigurationDocument document, CancellationToken cancellationToken = default)
         {
             await _collection.InsertOneAsync(document, cancellationToken: cancellationToken);
             return document;
         }
 
+
+        /// Version kontrolü yaparak mevcut konfigürasyon kaydını günceller
+        /// Version uyuşmazsa güncelleme yapılmaz
         public async Task<bool> UpdateAsync(string id, ConfigurationDocument document, long expectedVersion, CancellationToken cancellationToken = default)
         {
             var filter = Builders<ConfigurationDocument>.Filter.And(

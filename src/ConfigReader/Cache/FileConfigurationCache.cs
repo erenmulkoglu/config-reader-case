@@ -12,6 +12,10 @@ public sealed class FileConfigurationCache
 {
     private readonly string _filePath;
 
+
+
+    /// Son başarılı konfigürasyon kayıtlarını dosya sisteminde saklar
+    /// Storage erişilemediğinde uygulamanın son başarılı snapshot ile ayağa kalkabilmesini sağlar
     public FileConfigurationCache(string applicationName)
     {
         var safeApplicationName = applicationName.Replace(" ", "_");
@@ -23,6 +27,8 @@ public sealed class FileConfigurationCache
         _filePath = Path.Combine(cacheDirectory, $"{safeApplicationName}.cache.json");
     }
 
+
+    /// Başarılı okunan konfigürasyon kayıtlarını uygulama adına özel cache dosyasına yazar
     public async Task SaveAsync(IReadOnlyCollection<ConfigurationItem> configurations, CancellationToken cancellationToken = default)
     {
         var json = JsonSerializer.Serialize(configurations, new JsonSerializerOptions
@@ -33,6 +39,9 @@ public sealed class FileConfigurationCache
         await File.WriteAllTextAsync(_filePath, json, cancellationToken);
     }
 
+
+    /// Uygulama adına ait cache dosyasını okuyarak son başarılı konfigürasyon kayıtlarını döndürür
+    /// Cache dosyası yoksa boş liste döner
     public async Task<IReadOnlyCollection<ConfigurationItem>> LoadAsync(CancellationToken cancellationToken = default)
     {
         if (!File.Exists(_filePath))
