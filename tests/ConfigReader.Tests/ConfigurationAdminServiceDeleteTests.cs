@@ -17,8 +17,6 @@ namespace ConfigReader.Tests;
 /// ConfigurationAdminService sınıfının silme (Delete) işlemini doğrulayan unit testlerini içeriyor
 public class ConfigurationAdminServiceDeleteTests
 {
-
-
     /// Kayıt bulunduğunda DeleteAsync metodunun başarılı şekilde çalıştığını doğrular
 
     [Fact]
