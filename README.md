@@ -372,7 +372,14 @@ Sonuç: Başarılı
 | Offline Cache | Yapıldı |
 | Runtime Cache | Yapıldı |
 | File Cache | Yapıldı |
-
+| Dependency Inversion | Yapıldı |
+| TPL / async-await Kullanımı | Yapıldı |
+| Concurrency Kontrolü | Yapıldı |
+| Repository Pattern | Yapıldı |
+| Dependency Injection | Yapıldı |
+| Proje Dokümantasyonu | Yapıldı |
+| Source Control / GitHub | Yapıldı |
+| SOLID Prensipleri | Yapıldı |
 
 
 # Mimari Kararlar
