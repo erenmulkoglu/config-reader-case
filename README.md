@@ -347,7 +347,7 @@ Sonuç: Başarılı
 
 
 
-# Case Gereksinimlerinin Karşılanması
+# Case Gereksinimleri İçin
 
 | Gereksinim | Durum |
 |------------|--------|
