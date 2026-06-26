@@ -113,6 +113,7 @@ Her servis yalnızca kendi konfigürasyon kayıtlarına erişebilir
 
 ```text
 SERVICE-A
+
 ->
 
 ApplicationName = SERVICE-A
