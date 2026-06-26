@@ -147,9 +147,7 @@ Case gereksinimi doğrultusunda storage erişilemediği durumlarda kütüphane s
 
 3) Uygulama son başarılı cache ile çalışmaya devam eder
 
-Sonuç:
-
-Storage erişilemediğinde uygulama çalışmasını sürdürmektedir
+Sonuç: Storage erişilemediğinde uygulama çalışmasını sürdürmektedir
 
 
 Bu amaçla iki seviyeli cache yapısı uygulanmıştır:
