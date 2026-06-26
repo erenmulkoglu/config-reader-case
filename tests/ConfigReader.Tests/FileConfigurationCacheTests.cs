@@ -13,9 +13,8 @@ namespace ConfigReader.Tests;
 /// FileConfigurationCache sınıfının dosyaya yazma ve dosyadan okuma işlemlerini doğrulayan unit testlerini içeriyor
 public class FileConfigurationCacheTests
 {
-
     /// Kaydedilen konfigürasyonların dosyaya başarılı şekilde yazıldığını doğrular
-
+    
     [Fact]
     public async Task SaveAsync_And_LoadAsync_Should_Return_Same_Configurations()
     {
