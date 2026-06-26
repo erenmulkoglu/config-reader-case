@@ -2,7 +2,7 @@
 import axios from "axios";
 import "./App.css";
 
-const API_URL = "https://localhost:7193/api/configurations";
+const API_URL = "http://localhost:7193/api/configurations";
 
 function App() {
     const [items, setItems] = useState([]);

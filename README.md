@@ -1,10 +1,18 @@
-﻿# Dinamik konfigürasyon Okuyucu (Dynamic Configuration Reader)
+﻿﻿# Dinamik Konfigürasyon Okuyucu (Dynamic Configuration Reader)
 
 ## Projemizin Amacı
 
 Bu proje, .NET uygulamalarında kullanılan statik konfigürasyon dosyaları (web.config, app.config, appsettings.json vb.) yerine merkezi ve dinamik bir konfigürasyon yönetim sistemi oluşturmak amacıyla geliştirilmiştir.
 
 Konfigürasyon kayıtları MongoDB üzerinde tutulur ve uygulama çalışırken değiştirilebilir. Böylece deployment, restart veya recycle işlemi gerekmeksizin uygulamalar güncel konfigürasyon değerlerini kullanabilir.
+
+
+Tüm ekosistem docker-compose ile çalıştırıldı.
+
+<img width="1917" height="967" alt="image" src="https://github.com/user-attachments/assets/f1899bc5-6fbc-49e1-bc18-6d6152534480" />
+<img width="1917" height="971" alt="image" src="https://github.com/user-attachments/assets/92ce3bf9-ed86-43eb-993c-96aab59299b9" />
+<img width="1912" height="967" alt="image" src="https://github.com/user-attachments/assets/02983bda-a4bc-4c1b-983c-0b6ff8c0b80f" />
+
 
 # Kullanılan Teknolojiler
 
@@ -105,7 +113,8 @@ Her servis yalnızca kendi konfigürasyon kayıtlarına erişebilir
 
 ```text
 SERVICE-A
-↓
+
+->
 
 ApplicationName = SERVICE-A
 ```
@@ -152,11 +161,11 @@ Uygulama çalışırken MongoDB erişilemez hale gelirse RAM üzerinde bulunan s
 ```text
 MongoDB
 
-↓
+->
 
 Memory Cache
 
-↓
+->
 
 GetValue<T>()
 ```
@@ -176,15 +185,15 @@ dosyasından okunur
 ```text
 MongoDB
 
-↓
+->
 
 cache.json
 
-↓
+->
 
 Memory Cache
 
-↓
+->
 
 GetValue<T>()
 ```
@@ -270,11 +279,65 @@ Servisler
 
 | Servis | Adres |
 |---------|-------|
-| MongoDB | localhost:27017 |
 | API | http://localhost:7193 |
 | React | http://localhost:5173 |
+| RabbitMQ | http://localhost:15672 | guest & guest |
+| MongoDB | localhost:27017 |
+
+
+Not: Lütfen http yazalım. 
+
 
 ---
+
+
+## Örnek Veriler / POST
+
+{
+
+  "name": "SiteName",
+  
+  "type": "string",
+  
+  "value": "soty.io",
+  
+  "isActive": true,
+  
+  "applicationName": "SERVICE-A"
+  
+}
+
+{
+
+  "name": "IsBasketEnabled",
+  
+  "type": "bool",
+  
+  "value": "1",
+  
+  "isActive": true,
+  
+  "applicationName": "SERVICE-B"
+  
+}
+
+{
+
+  "name": "MaxItemCount",
+  
+  "type": "int",
+  
+  "value": "50",
+  
+  "isActive": false,
+  
+  "applicationName": "SERVICE-A"
+  
+}
+
+
+---
+
 
 # Unit Test
 
@@ -339,7 +402,7 @@ Sonuç: Başarılı
 
 
 
-# Case Gereksinimlerinin Karşılanması
+# Case Gereksinimleri İçin
 
 | Gereksinim | Durum |
 |------------|--------|
@@ -364,7 +427,14 @@ Sonuç: Başarılı
 | Offline Cache | Yapıldı |
 | Runtime Cache | Yapıldı |
 | File Cache | Yapıldı |
-
+| Dependency Inversion | Yapıldı |
+| TPL / async-await Kullanımı | Yapıldı |
+| Concurrency Kontrolü | Yapıldı |
+| Repository Pattern | Yapıldı |
+| Dependency Injection | Yapıldı |
+| Proje Dokümantasyonu | Yapıldı |
+| Source Control / GitHub | Yapıldı |
+| SOLID Prensipleri | Yapıldı |
 
 
 # Mimari Kararlar
