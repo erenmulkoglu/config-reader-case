@@ -1,4 +1,4 @@
-﻿# Dinamik konfigürasyon Okuyucu (Dynamic Configuration Reader)
+﻿# Dinamik Konfigürasyon Okuyucu (Dynamic Configuration Reader)
 
 ## Projemizin Amacı
 
